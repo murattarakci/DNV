@@ -12,6 +12,16 @@ Follows IMD Brand Guidelines v1.0 (Feb 2026):
 - Public Sans, weights Light–Bold, large-type leading at ~110%
 - IMD / DNV co-brand lockup, inlined as SVG. The IMD wordmark and slash come from the official IMD master template; the DNV mark is the official DNV vector (sky `#99D9F0`, green `#3F9C35`). On the navy card the DNV bottom bar and wordmark are reversed to white, mirroring the way they share one colour in the positive version.
 
+## QR code
+
+`assets/qr-dnv.svg` points at https://murattarakci.github.io/DNV/ and carries the
+IMD / DNV lockup in the middle. `qr-dnv-2048.png` and `qr-dnv-1024.png` are
+raster versions for slides and print.
+
+The code uses error correction level H, which tolerates 30% loss; the logo panel
+covers 5.3% of it. Decoded with jsQR at every size from 1024px down to 120px.
+If you swap the logo for a larger one, re-test before printing.
+
 ## Card storage
 
 Submitted cards go to Firestore so the facilitator view can show them. This site

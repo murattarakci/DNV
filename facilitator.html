@@ -341,7 +341,7 @@ list.addEventListener("click", async (e) => {
   const del = e.target.closest(".c-del");
   if (del && db) {
     if (!confirm("Remove this card from the view?")) return;
-    await fsSetDoc(fsDoc(db, "cards", del.dataset.id), { hidden: true }, { merge: true });
+    await fsSetDoc(fsDoc(db, window.CARDS_COLLECTION, del.dataset.id), { hidden: true }, { merge: true });
   }
 });
 
@@ -371,7 +371,7 @@ async function start() {
   // load the scoring model in the background; scores appear when it is ready
   ensureModel().then(() => scoreAll()).then(render).catch((e) => console.warn("model load failed", e));
 
-  onSnapshot(query(collection(db, "cards"), orderBy("ts", "desc")), (snap) => {
+  onSnapshot(query(collection(db, window.CARDS_COLLECTION), orderBy("ts", "desc")), (snap) => {
     cards = snap.docs.filter((d) => !d.data().hidden).map((d) => {
       const v = d.data();
       const c = {

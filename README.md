@@ -12,6 +12,20 @@ Follows IMD Brand Guidelines v1.0 (Feb 2026):
 - Public Sans, weights Light–Bold, large-type leading at ~110%
 - IMD / DNV co-brand lockup, inlined as SVG. The IMD wordmark and slash come from the official IMD master template; the DNV mark is the official DNV vector (sky `#99D9F0`, green `#3F9C35`). On the navy card the DNV bottom bar and wordmark are reversed to white, mirroring the way they share one colour in the positive version.
 
+## Card storage
+
+Submitted cards go to Firestore so the facilitator view can show them. This site
+shares a Firebase project with the LTAIS card but writes to its own collection,
+`dnv-cards` (set once in `firebase-config.js`), so the two cohorts stay apart.
+The Firestore rules need a matching block:
+
+```
+match /dnv-cards/{card} {
+  allow read, create, update: if true;
+  allow delete: if false;
+}
+```
+
 ## Deploy on GitHub Pages
 
 1. Create a new repository on github.com (e.g. `DNV`), public, without a README.

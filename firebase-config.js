@@ -9,7 +9,7 @@
 //        rules_version = '2';
 //        service cloud.firestore {
 //          match /databases/{database}/documents {
-//            match /cards/{card} {
+//            match /dnv-cards/{card} {
 //              allow read, create, update: if true;
 //              allow delete: if false;
 //            }
@@ -23,6 +23,10 @@
 //
 // These values are public identifiers, not secrets: access is controlled by
 // the Firestore rules above, not by hiding this config.
+// This site shares a Firebase project with the LTAIS card but keeps its own
+// collection, so the two cohorts do not appear in each other's facilitator view.
+window.CARDS_COLLECTION = "dnv-cards";
+
 window.FIREBASE_CONFIG = {
   apiKey: "AIzaSyDIClcTcAoWxgmHvtoWN7YZduICwxdAYKA",
   authDomain: "ltais-f31a0.firebaseapp.com",

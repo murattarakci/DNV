@@ -558,7 +558,7 @@ if (window.FIREBASE_CONFIG) {
       try {
         const data = window.__cardData();
         if (!data.blank1 && !data.blank2 && !data.name) return; // untouched card
-        await setDoc(doc(db, "cards", cardId), { ...data, ts: serverTimestamp() }, { merge: true });
+        await setDoc(doc(db, window.CARDS_COLLECTION, cardId), { ...data, ts: serverTimestamp() }, { merge: true });
       } catch (e) { console.warn("card submit failed", e); }
     }
 

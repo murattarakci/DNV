@@ -147,15 +147,6 @@
     margin-top: 0.4em;
   }
 
-  .card-program {
-    color: rgba(255, 255, 255, 0.55);
-    font-weight: 300;
-    font-size: 2.1cqw;
-    letter-spacing: 0.03em;
-    white-space: nowrap;
-    text-decoration: none;
-  }
-  .card-program:hover { color: rgba(255, 255, 255, 0.85); text-decoration: underline; }
   .byline .who {
     min-width: 6em;
     display: inline-block;
@@ -296,7 +287,6 @@
       <p class="statement" id="statement"><span contenteditable="true" spellcheck="true">In</span> <span class="proc" contenteditable="true" spellcheck="true" data-ph="hiring"></span><span contenteditable="true" spellcheck="true">, our job is not</span> <span class="blank" contenteditable="true" spellcheck="true" data-ph="sorting CVs"></span><span contenteditable="true" spellcheck="true">, but</span> <span class="blank" contenteditable="true" spellcheck="true" data-ph="deciding what good looks like"></span><span contenteditable="true" spellcheck="true">.</span></p>
       <div class="card-footer">
         <p class="byline">— <span class="who" contenteditable="true" spellcheck="true" data-ph="your name"></span></p>
-        <a class="card-program" href="https://www.imd.org/sprint/leadership-ai/" target="_blank" rel="noopener">imd.org/sprint/leadership-ai</a>
       </div>
     </div>
   </div>
@@ -338,8 +328,7 @@
 (function () {
   const card = document.getElementById("card");
   const toast = document.getElementById("toast");
-  const HASHTAGS = "#Leadership #IMD #AILeadershipSprint";
-  const PROGRAM_URL = "https://www.imd.org/sprint/leadership-ai/";
+  const HASHTAGS = "#Leadership #IMD #DNV";
 
   /* --- dropdown menu --- */
   const menuBtn = document.getElementById("btn-menu");
@@ -397,7 +386,7 @@
   }
 
   function shareText() {
-    return statementText() + "\n\n" + HASHTAGS + "\n" + PROGRAM_URL;
+    return statementText() + "\n\n" + HASHTAGS;
   }
 
   // data for the facilitator view (submitted by the module script below)
@@ -515,8 +504,7 @@
       '<div style="font-size:15px;line-height:1.45;color:#000A56;font-weight:bold;">&ldquo;' +
       sentence + '&rdquo;</div>' +
       (d.name ? '<div style="font-size:13px;color:#000A56;padding-top:5px;">' + escHtml(d.name) + "</div>" : "") +
-      '<div style="font-size:12px;padding-top:3px;"><a href="' + PROGRAM_URL +
-      '" style="color:#005DC4;text-decoration:none;">IMD / Leading in the Age of AI Sprint</a></div>' +
+      '<div style="font-size:12px;padding-top:3px;color:#005DC4;">IMD / DNV</div>' +
       "</td></tr></table>"
     );
   }

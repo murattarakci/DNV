@@ -249,7 +249,7 @@ async function scoreAll() {
 /* ---------- profanity check: flagged cards sink to the bottom ---------- */
 const PROFANITY = /\b(fuck\w*|shit\w*|bitch\w*|cunt\w*|asshole\w*|arsehole\w*|bastard\w*|dickhead\w*|wanker\w*|slut\w*|whore\w*|nigg\w+|fag\w*|retard\w*|piss\w*|bollocks|bullshit|motherfuck\w*|cock\w*|twat\w*)\b/i;
 function isFlagged(c) {
-  return PROFANITY.test(c.blank1 + " " + c.blank2 + " " + c.name);
+  return PROFANITY.test(c.process + " " + c.blank1 + " " + c.blank2 + " " + c.name);
 }
 
 /* ---------- rendering ---------- */
@@ -258,9 +258,8 @@ function esc(s) {
 }
 
 function stmtHTML(c) {
-  const b1 = c.blank1 ? '<span class="fill">' + esc(c.blank1) + "</span>" : "____";
-  const b2 = c.blank2 ? '<span class="fill">' + esc(c.blank2) + "</span>" : "____";
-  return "My job as a leader is not " + b1 + ", but " + b2 + ".";
+  const f = (t) => (t ? '<span class="fill">' + esc(t) + "</span>" : "____");
+  return "In " + f(c.process) + ", our job is not " + f(c.blank1) + ", but " + f(c.blank2) + ".";
 }
 
 function render() {
@@ -268,7 +267,7 @@ function render() {
   startOfDay.setHours(0, 0, 0, 0);
   const shown = cards.filter((c) => {
     if (todayOnly && (!c.ts || c.ts < startOfDay)) return false;
-    if (namedOnly && !(c.name && c.blank1 && c.blank2)) return false;
+    if (namedOnly && !(c.name && c.process && c.blank1 && c.blank2)) return false;
     return true;
   });
   // default order: biggest contrast first (flagged always last, newest first until scored)
@@ -376,6 +375,7 @@ async function start() {
       const v = d.data();
       const c = {
         id: d.id,
+        process: (v.process || "").trim(),
         blank1: (v.blank1 || "").trim(),
         blank2: (v.blank2 || "").trim(),
         name: (v.name || "").trim(),
